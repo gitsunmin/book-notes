@@ -1,2 +1,3 @@
 # book-notes
-In this repository, you read books or articles and make brief summaries.
+This repository creates a brief summary after reading a book or article.
+
