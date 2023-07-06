@@ -25,3 +25,12 @@ by Professor Franklin Frisby.
 - 순수 함수로 구성된 함수는 외부 상태를 변화시키지도, 외부 상태에 영향을 받지도 않기 때문에, 병렬 실행이 가능합니다.
 
 ## Chapter 04: Currying
+- Currying은 함수가 함수를 리턴하도록 하여 파라미터를 줄이는 방법입니다.
+    - before `const add = (x, y) => x + y;`
+    - after `const add = (x) => (y) => x + y;`
+- 이렇게도 사용 가능합니다.
+    ```javascript
+    const getChildren = x => x.childNodes;
+    const allTheChildren = map(getChildren);
+     ```
+
