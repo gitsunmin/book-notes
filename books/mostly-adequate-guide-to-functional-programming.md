@@ -28,9 +28,47 @@ by Professor Franklin Frisby.
 - Currying은 함수가 함수를 리턴하도록 하여 파라미터를 줄이는 방법입니다.
     - before `const add = (x, y) => x + y;`
     - after `const add = (x) => (y) => x + y;`
-- 이렇게도 사용 가능합니다.
+- 이 방식은 수학에서의 함수를 표현하기에 적합합니다. 
+- 이렇게 사용 가능합니다.
     ```javascript
     const getChildren = x => x.childNodes;
     const allTheChildren = map(getChildren);
      ```
 
+## Chapter 05: Coding by Composing
+- 함수는 합성 가능해야 하며, 합성된 함수는 새로운 함수가 되어야합니다.
+- point-free는 작동하는 데이터를 언급하지 않는 함수를 의미합니다.
+    ```javascript
+    // not pointfree because we mention the data: word
+    const snakeCase = word => word.toLowerCase().replace(/\s+/ig, '_');
+
+    // pointfree
+    const snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
+    ```
+    - 추가 찾아본 내용,   
+        여기서 “point”는 함수의 인자를 지칭합니다. 즉, “point-free”라는 용어는 함수의 인자를 명시하지 않는다는 의미이며 이러한 스타일로 함수를 정의하는 것이 “Pointfree Style”입니다.
+
+        수학에서 이 용어를 사용하는데, 
+
+        `f(x) = x^2` 와 같은 함수를 `f = square` 처럼 사용하여서 인사 x를 작성하지 않아도 이해 가능하도록 하는 방법입니다.
+
+        - `f(x) = x^2` :  point-full style
+        - `f = square` : point-free style
+
+- 아래와 같은 함수를 만들어서 pipe 중간에 로그를 찍어서 확인하면 디버깅하기 편합니다.
+    ```javascript
+    const trace = curry((tag, x) => {
+        console.log(tag, x);
+        return x;
+    });
+    ```
+    사용 예시
+    ```javascript
+    const dasherize = compose(
+        intercalate('-'),
+        toLower,
+        trace('after split'), // log -> after split: blahblah
+        split(' '),
+        replace(/\s{2,}/ig, ' '),
+    );
+    ```
