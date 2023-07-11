@@ -105,3 +105,30 @@ by Professor Franklin Frisby.
     이 `identity`의 쓸모없음을 잘 기억해두라고 하시네요...
     * 카테고리 이론은 앞으로 계속 등장할 것 같습니다. 계속 보면서 익혀야할 내용인 것 같습니다.
 
+## Chapter 06: Example Application
+- Declarative Coding(선언형 코딩)   
+    선언적 코딩은 명령형 코딩과 반대되는 개념인데, 컴퓨터에게 작업을 일일이 지시하는 것이 명령형이고, 우리가 원하는 결과물의 사양을 작성하는 것이 선언형 코딩입니다. 아래에 간단히 예시를 작성해 보겠습니다.
+
+```javascript
+    // 명령형
+    const makes = [];
+
+    for (let i = 0; i < cars.length; i += 1) {
+        makes.push(cars[i].make);
+    }
+
+    // 선언형
+    const makes = cars.map(car => car.make);
+```
+함수형 프로그래밍에서 선언형 코딩을 사용한 예시도 작성하였습니다.
+```javascript
+// imperative
+const authenticate = (form) => {
+  const user = toUser(form);
+  return logIn(user);
+};
+
+// declarative
+const authenticate = compose(logIn, toUser);
+```
+- 간단한 애플리케이션을 만들고 리팩토링하는 예시가 나와있는데, 요약 보다는 참조로 해놓겠습니다.[여기](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch06)
