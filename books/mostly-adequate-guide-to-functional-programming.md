@@ -132,3 +132,45 @@ const authenticate = (form) => {
 const authenticate = compose(logIn, toUser);
 ```
 - 간단한 애플리케이션을 만들고 리팩토링하는 예시가 나와있는데, 요약 보다는 참조로 해놓겠습니다.[여기](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch06)
+
+## Chapter 07: Hindley-Milner and Me
+- Type이란 다양한 배경을 가진 사람들이 간결하고 효과적으로 소통할 수 있게 해주는 메타 언어이다.
+    - 메타언어: 다른 언어를 기술하거나 분석하기 위하여 사용되는 언어. 가령, 영어 문법을 한국어로 논할 때 한국어는 메타언어가 됨.
+- 아래 코드에서 주석 처리 되어 있는 부분을 보면, 하나의 Signature 처럼 보여집니다.
+    ```javascript
+        // capitalize :: String -> String
+        const capitalize = s => toUpperCase(head(s)) + toLowerCase(tail(s));
+
+        capitalize('smurf'); // 'Smurf'
+    ```
+    이 Signature는 Hindley-Milner 표현식으로 작성이 되었고, 함수의 구현보다는 함수의 Type을 정의하고, 이해하는 데에 사용합니다. 아래에 더 자세한 예시가 있습니다.
+    ```javascript
+        // strLength :: String -> Number
+        const strLength = s => s.length;
+
+        // join :: String -> [String] -> String
+        const join = curry((what, xs) => xs.join(what));
+
+        // match :: Regex -> String -> [String]
+        const match = curry((reg, s) => s.match(reg));
+
+        // replace :: Regex -> String -> String -> String
+        const replace = curry((reg, sub, s) => s.replace(reg, sub));
+    ```
+- 괄호를 이용하여 우선순위를 정의할 수도 있습니다.
+    ```javascript
+        // filter :: (a -> Bool) -> [a] -> [a]
+        const filter = curry((f, xs) => xs.filter(f));
+
+        // reduce :: ((b, a) -> b) -> b -> [a] -> b
+        const reduce = curry((f, x, xs) => xs.reduce(f, x));
+    ```
+- 함수명은 타입 시그니처만 보았을 떄는 알 수 없는 부분을 알려주는 중요한 요소입니다. 아래의 시그니처에서 함수명이 큰 역할을 해주고 있습니다.
+    ```javascript
+        // head :: [a] -> a
+        // reverse :: [a] -> [a]
+    ```
+- 시그니처에 제약사항을 달아주면, 더 명확한 Type이 만들어집니다. 아래의 시그니처에서는 `Ord`라는 Type으로 정의된 `a`만 입력이 가능한 함수로 정의가 되었습니다.
+    ```javascript
+        // sort :: Ord a => [a] -> [a]
+    ```
