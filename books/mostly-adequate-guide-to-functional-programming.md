@@ -174,3 +174,39 @@ const authenticate = compose(logIn, toUser);
     ```javascript
         // sort :: Ord a => [a] -> [a]
     ```
+
+## Chapter 08: Tupperware
+- 이 장의 첫 부분에서는 Container를 하나 만들어서 설명을 진행하는데, Container는 아래와 같이 생겼습니다.
+```javascript
+class Container {
+  constructor(x) {
+    this.$value = x;
+  }
+
+  static of(x) {
+    return new Container(x);
+  }
+  ...
+}
+```
+- Container는 단 하나의 속성을 가진 Object입니다. ($value)
+- 값은 하나이지만, Type이 하나는 아닙니다.
+- 한 번 Container에 들어간 data는 그대로 유지 됩니다.
+이렇게 사용 가능합니다.
+```javascript
+// (a -> b) -> Container a -> Container b
+Container.prototype.map = function (f) {
+  return Container.of(f(this.$value));
+};
+
+Container.of(2).map(two => two + 2); 
+// Container(4)
+
+Container.of('flamethrowers').map(s => s.toUpperCase()); 
+// Container('FLAMETHROWERS')
+
+Container.of('bombs').map(append(' away')).map(prop('length')); 
+// Container(10)
+```
+
+- Functor는 위와 같은 `map`이 구현되어 있는 Type을 이야기합니다.
