@@ -1,0 +1,4 @@
+# Beyond Browsers: The Longterm Future of JavaScript Standards   
+[link](https://thenewstack.io/beyond-browsers-the-longterm-future-of-javascript-standards/)
+
+이 글에서는 JavaScript의 표준화 작업이 진행 중이며, 이를 위한 W3C의 커뮤니티 그룹인 WinterCG가 소개됩니다. 이 그룹은 서로 다른 런타임이 같은 방식으로 동일한 기능을 수행하게 하는 것을 목표로 하고 있습니다. 이러한 표준화는 브라우저 및 비브라우저 런타임 간의 상호 운용성에 중점을 두고 있으며, 서버 사이드 JavaScript 런타임과 플랫폼 간의 공통적인 기능을 고려합니다. 이러한 표준화는 여러 환경에서 실행되는 코드의 폴리필 사용을 줄이고, 표준 API의 다른 구현 사이에서 성능 문제를 방지할 수 있습니다. WinterCG는 이러한 문제를 해결하기 위한 조정 역할을 합니다. 그 목표는 서로 다른 런타임이 같은 방식으로 동일한 기능을 수행하게 하는 것입니다. 이러한 표준화는 서버 사이드 JavaScript 런타임에 의존할 수 있음을 조직에게 보장하며, 그 결과로 과거에는 불안정한 관리에 시달리던 JavaScript 런타임에 대한 안정성과 신뢰성이 향상될 것입니다.
